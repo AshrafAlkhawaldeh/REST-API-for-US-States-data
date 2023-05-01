@@ -52,30 +52,6 @@ app.get('/states', async (req, res) => {
 
 
 
-// app.get('/states/', async (req, res) => {
-//     try {
-//         const dbStates = await States.find();
-
-//         const dbStatesMap = dbStates.reduce((map, dbState) => {
-//             map[dbState.stateCode] = dbState;
-//             return map;
-//         }, {});
-
-//         const states = statesData.map(state => {
-//             const dbState = dbStatesMap[state.code];
-//             return dbState ? { ...state, funfacts: dbState.funfacts } : state;
-//         });
-
-//         res.json(states);
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ error: 'Server error' });
-//     }
-// });
-
-//I need to paste a code from my pc to here you can . I am using windows so Control+v not working use window+V ok
-
-
 app.get('/states/:state', async (req, res) => {
   const stateCode = req.params.state.toUpperCase();
   
@@ -98,15 +74,11 @@ app.get('/states/:state', async (req, res) => {
       funfacts: dbState.funfacts //it is an array
     };
     
-    res.json(mergedState); //whih is json value? 
+    res.json(mergedState); 
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }
 });
-
-//can we test? yes you can free to test ok
-
-
 
 
 app.get('/states/:state/funfact', async (req, res) => {
@@ -188,7 +160,6 @@ app.get('/states/:state/admission', (req, res) => {
 
     res.send({ state: state.state, admitted: state.admission_date });
 });
-//If you wish I clean my logs okey? ok
 
 app.post('/states/:state/funfact', async (req, res) => {
     const stateCode = req.params.state.toUpperCase();
@@ -277,10 +248,6 @@ app.patch('/states/:state/funfact', async (req, res) => {
 });
 
 
-
-
-
-
 app.delete('/states/:state/funfact', async (req, res) => {
     const stateCode = req.params.state.toUpperCase();
     const { index } = req.body;
@@ -332,8 +299,3 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-
-
-//Hey ! I think i am done why we have this one. No idea it was working. And my GET and DELETE is working too.
-//Okey thank you I have to leave now so maybe I will check and back to you.
-//Thank you you working good. Thabks for ur time. goodbye
