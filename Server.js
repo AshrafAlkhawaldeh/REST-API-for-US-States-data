@@ -52,28 +52,6 @@ app.get('/states', async (req, res) => {
 
 
 
-// app.get('/states/', async (req, res) => {
-//     try {
-//         const dbStates = await States.find();
-
-//         const dbStatesMap = dbStates.reduce((map, dbState) => {
-//             map[dbState.stateCode] = dbState;
-//             return map;
-//         }, {});
-
-//         const states = statesData.map(state => {
-//             const dbState = dbStatesMap[state.code];
-//             return dbState ? { ...state, funFacts: dbState.funFacts } : state;
-//         });
-
-//         res.json(states);
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ error: 'Server error' });
-//     }
-// });
-
-
 
 app.get('/states/:state', async (req, res) => {
     const stateCode = req.params.state.toUpperCase();
@@ -288,16 +266,6 @@ app.delete('/states/:state/funfact', async (req, res) => {
 app.get('*', (req, res) => {
     res.status(404).sendFile(__dirname + '/404.html');
 });
-
-// app.get('*', (req, res) => {
-//     if (req.accepts('html')) {
-//         res.status(404).send('<h1>404</h1>');
-//     } else if (req.accepts('json')) {
-//         res.status(404).json({ error: '404 Not Found' });
-//     } else {
-//         res.status(404).send('Not found');
-//     }
-// });
 
 
 app.listen(PORT, () => {
